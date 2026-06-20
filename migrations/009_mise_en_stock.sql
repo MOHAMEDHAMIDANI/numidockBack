@@ -1,0 +1,1 @@
+ALTER TABLE check_ins ADD COLUMN service_done_at_min INTEGER;
