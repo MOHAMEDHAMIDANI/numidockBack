@@ -18,8 +18,14 @@ const app = express();
 
 app.use(cors({
   origin: (origin, cb) => {
-    // allow any localhost port (covers 5173, 5174, 5175, …) and same-origin requests
-    if (!origin || /^http:\/\/localhost(:\d+)?$/.test(origin)) return cb(null, true);
+    // allow any localhost port (covers 5173, 5174, 5175, …), Render frontend, and same-origin requests
+    if (
+      !origin || 
+      /^http:\/\/localhost(:\d+)?$/.test(origin) ||
+      origin === 'https://numidockfront.onrender.com'
+    ) {
+      return cb(null, true);
+    }
     cb(new Error('CORS: origin not allowed'));
   },
   credentials: true,
